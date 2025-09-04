@@ -229,7 +229,7 @@ for i, ic in enumerate(initial_conditions):
             text.set_color("white")
 
     # Save the combined plot
-    plt.savefig(f"combined_ic{i+1}.png", dpi=150, facecolor="black")
+    plt.savefig(f"combined_ic{i+1}.pdf", dpi=150, facecolor="black")
     plt.close(fig)
 
 
@@ -264,5 +264,5 @@ for ax, case in zip(axs, damping_cases):
 
 
 # Save the vector field comparison plot
-plt.savefig("vector_field_comparison.png", dpi=150, facecolor="black")
+plt.savefig("vector_field_comparison.pdf", dpi=150, facecolor="black")
 plt.close(fig)
