@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
@@ -21,18 +23,18 @@ damping_cases = [
 
 # Initial condition sets
 initial_conditions = [
-    {"x0": 2.0, "x_dot0": 0.0},  # Non-zero displacement, zero velocity
-    {"x0": 0.0, "x_dot0": 2.0},  # Zero displacement, non-zero velocity
+    {"y0": 2.0, "y_dot0": 0.0},  # Non-zero displacement, zero velocity
+    {"y0": 0.0, "y_dot0": 2.0},  # Zero displacement, non-zero velocity
 ]
 
 
 # Function to compute the system dynamics and characteristic roots
-def system_dynamics_and_roots(t, omega_0, zeta, x0, x_dot0):
+def system_dynamics_and_roots(t, omega_0, zeta, y0, y_dot0):
     if zeta < 1:
         damping_situation = "Underdamped"
         omega_d = omega_0 * np.sqrt(1 - zeta**2)  # Damped natural frequency
-        A = x0
-        B = (x_dot0 + zeta * omega_0 * x0) / omega_d
+        A = y0
+        B = (y_dot0 + zeta * omega_0 * y0) / omega_d
         x_t = np.exp(-zeta * omega_0 * t) * (
             A * np.cos(omega_d * t) + B * np.sin(omega_d * t)
         )
@@ -43,8 +45,8 @@ def system_dynamics_and_roots(t, omega_0, zeta, x0, x_dot0):
         roots = [-zeta * omega_0 + 1j * omega_d, -zeta * omega_0 - 1j * omega_d]
     elif zeta == 1:  # Critically damped
         damping_situation = "Critically Damped"
-        A = x0
-        B = x_dot0 + omega_0 * x0
+        A = y0
+        B = y_dot0 + omega_0 * y0
         x_t = (A + B * t) * np.exp(-omega_0 * t)
         x_dot_t = B * np.exp(-omega_0 * t) - omega_0 * (A + B * t) * np.exp(
             -omega_0 * t
@@ -54,8 +56,8 @@ def system_dynamics_and_roots(t, omega_0, zeta, x0, x_dot0):
         damping_situation = "Overdamped"
         r1 = -omega_0 * (zeta + np.sqrt(zeta**2 - 1))
         r2 = -omega_0 * (zeta - np.sqrt(zeta**2 - 1))
-        A = (x_dot0 - r2 * x0) / (r1 - r2)
-        B = x0 - A
+        A = (y_dot0 - r2 * y0) / (r1 - r2)
+        B = y0 - A
         x_t = A * np.exp(r1 * t) + B * np.exp(r2 * t)
         x_dot_t = A * r1 * np.exp(r1 * t) + B * r2 * np.exp(r2 * t)
         roots = [r1, r2]
@@ -94,7 +96,7 @@ for case in damping_cases:
         dt = 0.1
         t = np.arange(0, t_max + dt, dt)
         x_t, x_dot_t, _, damping_situation = system_dynamics_and_roots(
-            t, case["omega_0"], case["zeta"], ic["x0"], ic["x_dot0"]
+            t, case["omega_0"], case["zeta"], ic["y0"], ic["y_dot0"]
         )
 
         # Print damping situation
@@ -112,36 +114,36 @@ for case in damping_cases:
             ax.set_yticks([-2, -1, 0, 1, 2])
 
         # Initialize plots
-        (line_time,) = ax_time.plot([], [], color=light_blue)
+        (line_time,) = ax_time.plot([], [], color=white)
         (dot_time,) = ax_time.plot([], [], "o", color=red)
-        (line_phase,) = ax_phase.plot([], [], color=light_blue)
+        (line_phase,) = ax_phase.plot([], [], color=white)
         (dot_phase,) = ax_phase.plot([], [], "o", color=red)
         (mass,) = ax_system.plot([], [], "o", color=red, markersize=10)
-        (spring,) = ax_system.plot([], [], color=light_blue, lw=2)
+        (spring,) = ax_system.plot([], [], color=white, lw=2)
 
         # Set up plot limits and labels with larger text
         ax_time.set_xlim(0, t_max)
         ax_time.set_ylim(-2.1, 2.1)
         ax_time.set_xticks([0, 5, 10, 15, 20])
-        ax_time.set_xlabel("Time", color=light_blue, fontsize=14)
-        ax_time.set_ylabel("x(t)", color=light_blue, fontsize=14)
-        ax_time.set_title("Position over Time", color=light_blue, fontsize=16)
+        ax_time.set_xlabel("Time", color=white, fontsize=14)
+        ax_time.set_ylabel("y(t)", color=white, fontsize=14)
+        ax_time.set_title("Position over Time", color=white, fontsize=16)
 
         ax_phase.set_xlim(-2.1, 2.1)
         ax_phase.set_ylim(-2.1, 2.1)
         ax_phase.set_xticks([-2, -1, 0, 1, 2])
         ax_phase.set_aspect("equal")
-        ax_phase.set_xlabel("x", color=light_blue, fontsize=14)
-        ax_phase.set_ylabel("x'", color=light_blue, fontsize=14)
-        ax_phase.set_title("Phase Diagram", color=light_blue, fontsize=16)
+        ax_phase.set_xlabel("y", color=white, fontsize=14)
+        ax_phase.set_ylabel("y'", color=white, fontsize=14)
+        ax_phase.set_title("Phase Diagram", color=white, fontsize=16)
 
         ax_system.set_xlim(-1, 1)
         ax_system.set_ylim(-2.1, 2.1)
         ax_system.set_xticks([])
         ax_system.set_aspect("equal")
-        ax_system.set_ylabel("Position (x)", color=light_blue, fontsize=14)
+        ax_system.set_ylabel("Position (y)", color=white, fontsize=14)
         ax_system.set_yticks(np.arange(-2, 3, 1))
-        ax_system.set_title("System Visualization", color=light_blue, fontsize=16)
+        ax_system.set_title("System Visualization", color=white, fontsize=16)
 
         # Add vector field to the phase diagram
         add_vector_field(ax_phase, case["omega_0"], case["zeta"])
@@ -174,7 +176,7 @@ for i, ic in enumerate(initial_conditions):
     ax_plot.set_xticks([0, 5, 10, 15, 20])
     ax_plot.axhline(0, color=white, lw=0.5)  # x-axis at x=0
     ax_plot.set_xlabel("Time", color="white", fontsize=14)
-    ax_plot.set_ylabel("x(t)", color="white", fontsize=14)
+    ax_plot.set_ylabel("y(t)", color="white", fontsize=14)
     ax_plot.set_title(
         f"Combined Damping Cases - Initial Condition {i+1}", color="white", fontsize=16
     )
@@ -182,7 +184,7 @@ for i, ic in enumerate(initial_conditions):
     for case in damping_cases:
         t = np.linspace(0, t_max, 1000)
         x_t, x_dot_t, roots, damping_situation = system_dynamics_and_roots(
-            t, case["omega_0"], case["zeta"], ic["x0"], ic["x_dot0"]
+            t, case["omega_0"], case["zeta"], ic["y0"], ic["y_dot0"]
         )
         ax_plot.plot(t, x_t, label=damping_situation, color=case["color"])
 
@@ -245,7 +247,7 @@ for ax, case in zip(axs, damping_cases):
 
     # Evaluate system
     _, _, _, damping_situation = system_dynamics_and_roots(
-        t, case["omega_0"], case["zeta"], ic["x0"], ic["x_dot0"]
+        t, case["omega_0"], case["zeta"], ic["y0"], ic["y_dot0"]
     )
 
     # Set up the axis labels and titles
