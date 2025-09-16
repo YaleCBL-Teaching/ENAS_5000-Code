@@ -207,8 +207,8 @@ for i, ic in enumerate(initial_conditions):
     ax_phase.set_aspect("equal")
     ax_phase.axhline(0, color=white, lw=0.5)
     ax_phase.axvline(0, color=white, lw=0.5)
-    ax_phase.set_xlabel("x", color="white", fontsize=14)
-    ax_phase.set_ylabel("x'", color="white", fontsize=14)
+    ax_phase.set_xlabel("y", color="white", fontsize=14)
+    ax_phase.set_ylabel("y'", color="white", fontsize=14)
     ax_phase.set_title("Phase Plane Trajectories", color="white", fontsize=16)
 
     # Setup for the roots plot
@@ -256,8 +256,8 @@ for ax, case in zip(axs, damping_cases):
     ax.set_aspect("equal")
     ax.axhline(0, color=white, lw=0.5)
     ax.axvline(0, color=white, lw=0.5)
-    ax.set_xlabel("x", color="white", fontsize=14)
-    ax.set_ylabel("x'", color="white", fontsize=14)
+    ax.set_xlabel("y", color="white", fontsize=14)
+    ax.set_ylabel("y'", color="white", fontsize=14)
     ax.set_title(damping_situation, color="white", fontsize=16)
 
     add_vector_field(ax, case["omega_0"], case["zeta"])
