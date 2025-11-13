@@ -68,5 +68,13 @@ if __name__ == "__main__":
     #       - the value of its row sum.
 
 
+ # PRACTICE 2:
+    # Using the first three eigenvectors (columns of vecs):
+    # 1) For each of the first three modes, compute the sum of its entries
+    #    and the mean of its entries (use np.sum and np.mean).
+    # 2) Print these values for each mode.
+    # 3) Then, for the FIRST mode only, use np.diff to compute the difference
+    #    between consecutive entries of the eigenvector and print the maximum
+    #    of these differences using np.max.
 
 
