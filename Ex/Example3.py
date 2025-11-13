@@ -54,18 +54,21 @@ print(norm)
 # compute its Euclidean norm, and then print the difference between the two norms.
 
 # PRACTICE 3:
-# Using ONLY numpy functions (no manual + and no loops),
+# Using ONLY numpy operations (no loops, no manual +),
 # create a new array called "double_seq" that contains seq multiplied by 2.
-# Then compute ALL of the following and print them:
-# 1) The mean of double_seq
-# 2) The median of double_seq
-# 3) The difference between the largest and smallest values of double_seq
+# Then compute and print ALL of the following:
+# 1) The sum of double_seq
+# 2) The average (mean) of double_seq
+# 3) The difference between consecutive elements of double_seq (use np.diff)
 
 # PRACTICE 4:
-# Combine what you learned:
-# 1) Create a new 2D array "M" with two rows: the arrays a and b stacked on top of each other.
+# WITHOUT using vstack or new functions:
+# 1) Create a new 2D array "M" where the first row is 'a' and the second row is 'b'.
+#    (Hint: use np.array([a, b]))
 # 2) Compute the column sums of M (axis=0).
-# 3) Compute the Euclidean norm of that column-sum vector.
-# 4) Finally, subtract the original norm of the vector [3, 4] from this new norm.
-# Print the final result.
+# 3) Compute the Euclidean norm of the column-sum vector.
+# 4) Subtract the original norm of the vector [3, 4] from this new norm.
+# Print the result.
+
+
 
