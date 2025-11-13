@@ -44,4 +44,28 @@ vector = np.array([3,4])
 
 norm = np.linalg.norm(vector)
 
+
 print(norm)
+
+# PRACTICE 1: Using my_array, compute the sum of its elements WITHOUT using a loop or np.sum().
+# (Hint: use simple indexing or slicing.)
+
+# PRACTICE 2: Using the vector array, create a NEW vector [6, 8],
+# compute its Euclidean norm, and then print the difference between the two norms.
+
+# PRACTICE 3:
+# Using ONLY numpy functions (no manual + and no loops),
+# create a new array called "double_seq" that contains seq multiplied by 2.
+# Then compute ALL of the following and print them:
+# 1) The mean of double_seq
+# 2) The median of double_seq
+# 3) The difference between the largest and smallest values of double_seq
+
+# PRACTICE 4:
+# Combine what you learned:
+# 1) Create a new 2D array "M" with two rows: the arrays a and b stacked on top of each other.
+# 2) Compute the column sums of M (axis=0).
+# 3) Compute the Euclidean norm of that column-sum vector.
+# 4) Finally, subtract the original norm of the vector [3, 4] from this new norm.
+# Print the final result.
+
