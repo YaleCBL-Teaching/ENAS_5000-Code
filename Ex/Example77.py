@@ -55,3 +55,18 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+    # PRACTICE 1:
+    # Using the matrix A:
+    # 1) Compute the sum of each ROW of A and store it in an array called row_sums.
+    #    (Hint: use np.sum with axis=1.)
+    # 2) Print the row_sums array.
+    # 3) Find which row has the LARGEST row sum (you can use a simple loop),
+    #    and print:
+    #       - the index of that row
+    #       - the value of its row sum.
+
+
+
+
