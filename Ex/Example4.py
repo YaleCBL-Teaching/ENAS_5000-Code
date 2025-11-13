@@ -27,3 +27,23 @@ print("||vector3||   =", length_vector3)
 print("normalized_unit_vector3  =", normalized_unit_vector3)
 # print(np.sqrt(sum(normalized_unit_vector3**2)))
 print("dy/dx   =", dy_dx)
+
+# PRACTICE 1 (intermediate):
+# Using the arrays x and y:
+# 1) Create a new array called "ratio" where ratio[i] = y[i] / x[i],
+#    BUT make sure you do NOT divide by zero. For any x[i] = 0, set ratio[i] = 0 manually.
+# 2) Print the following for the ratio array:
+#    - its maximum value
+#    - its minimum value
+#    - the index where the maximum occurs (use only what you learned so far)
+
+# PRACTICE 2 (advanced):
+# Using the 3-dimensional vector3:
+# 1) Create a new vector3_scaled where each element of vector3 is multiplied by 5.
+# 2) Compute the Euclidean norm of vector3_scaled.
+# 3) Compute the angle (in radians) between vector3 and vector3_scaled using the dot product formula:
+#           angle = arccos( (v·w) / (||v|| * ||w||) )
+#    (Hint: you already know dot product = sum of elementwise multiplications,
+#           and you know how to compute norms.)
+# 4) Print the angle.
+
