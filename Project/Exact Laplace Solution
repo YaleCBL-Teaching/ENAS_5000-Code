@@ -1,1 +1,32 @@
-
+def exact_solution(x, y, n_terms=100):
+    """
+    Exact solution for Laplace equation with:
+    - Neumann BC on left: du/dx = nbc
+    - Dirichlet BC on right/top/bottom: u = dbc
+    
+    u(x,y) = dbc - sum_{n=1,3,5,...} (4*nbc*Ly)/((n*pi)^2 * cosh(n*pi*Lx/Ly)) 
+                                      * sinh(n*pi*(Lx-x)/Ly) * sin(n*pi*y/Ly)
+                                      
+    Rewritten in numerically stable form to avoid overflow in sinh/cosh.
+    """
+    result = np.full_like(x, dbc, dtype=float)
+    
+    for n in range(1, 2*n_terms, 2):  # odd n only: 1, 3, 5, ...
+        lambda_n = n * np.pi / Ly
+        
+        # Numerically stable form:
+        # sinh(a)/cosh(b) where a = lambda_n*(Lx-x), b = lambda_n*Lx
+        # = (e^a - e^{-a}) / (e^b + e^{-b})
+        # = e^{a-b}(1 - e^{-2a}) / (1 + e^{-2b})
+        # = e^{-lambda_n * x} * (1 - e^{-2*lambda_n*(Lx-x)}) / (1 + e^{-2*lambda_n*Lx})
+        
+        exp_neg_x = np.exp(-lambda_n * x)
+        exp_neg_2Lx = np.exp(-2 * lambda_n * Lx)
+        exp_neg_2Lx_minus_x = np.exp(-2 * lambda_n * (Lx - x))
+        
+        ratio = exp_neg_x * (1 - exp_neg_2Lx_minus_x) / (1 + exp_neg_2Lx)
+        
+        coeff = (4 * nbc * Ly) / ((n * np.pi)**2)
+        result -= coeff * ratio * np.sin(lambda_n * y)
+    
+    return result
