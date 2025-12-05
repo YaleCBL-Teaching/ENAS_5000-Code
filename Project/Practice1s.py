@@ -71,7 +71,25 @@ def laplace(Nx, Ny):
     # ---------------------------
     return x, y, np.linalg.solve(A, b)
 
+# ---------------------------
+# STUDENT Practice: Error Analysis / Convergence Study
+# ---------------------------
+# TODO: Modify the loop below to perform a grid convergence study:
+#   1. Run the solver for multiple grid sizes 
+#   2. For each grid size, compute the error between numerical and exact solution
+#      using an appropriate norm (e.g., L2 norm, L-infinity norm, or max error)
+#   3. Store the grid spacing h and the corresponding error
+#   4. Create a log-log plot of error vs. h
+#   5. Determine the order of convergence (slope of the log-log plot)
+#   6. Verify that you get second-order convergence (slope ≈ 2) for this scheme
+#
+# Hints:
+#   - L2 error: np.sqrt(np.mean((T_numerical - T_exact)**2))
+#   - L_inf error: np.max(np.abs(T_numerical - T_exact))
+#   - Use np.polyfit on log-log data to find the convergence rate
+#   - The exact solution uses a Fourier series - use enough terms (n_terms=100+)
 
+# *** I have included the exact solution of this problem as a separate function under the name "Exact Laplace Solution"
 
 # Convert back to 2D (This loop help you refine your mesh and develop a convergence study)
 n_converge = 5
