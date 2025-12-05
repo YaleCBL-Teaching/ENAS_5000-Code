@@ -63,7 +63,7 @@ def laplace(Nx, Ny):
             A[k, idx(i-1, j)]    =  1.0
             A[k, idx(i, j+1)]    =  1.0
             A[k, idx(i, j-1)]    =  1.0
-            
+            b[k] = 0
         print(A)
 
     # ---------------------------
@@ -71,7 +71,9 @@ def laplace(Nx, Ny):
     # ---------------------------
     return x, y, np.linalg.solve(A, b)
 
-# Convert back to 2D
+
+
+# Convert back to 2D (This loop help you refine your mesh and develop a convergence study)
 n_converge = 5
 
 for n in range(n_converge):
